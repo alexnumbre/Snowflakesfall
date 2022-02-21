@@ -1,4 +1,4 @@
-import random
+import random,snowflake
 
 import wrap
 from wrap import world,sprite
@@ -6,22 +6,23 @@ from wrap import world,sprite
 wrap.add_sprite_dir("MySprites")
 
 world.create_world(700,700)
-world.set_back_color(0,180,100)
+world.set_back_color(150,215,255)
 snowlist=[]
 
 @wrap.always(1000)
-def snowfall():
-    x= random.randint(20,680)
-    y=-5
-    snowflake=sprite.add("snow",x,y,"snow")
-    snowlist.append(snowflake)
+def snowflake2():
+    snowlist.append(snowflake.createsnowflake())
+
 
 
 
 @wrap.always(50)
 def speedsnowflake():
-    for snowflake in snowlist:
-        sprite.move(snowflake,0,8)
+    for snowlake in snowlist:
+        sprite.move(snowlake["id"],0,snowlake["speed"])
+
+
+
 
 
 
