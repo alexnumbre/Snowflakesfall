@@ -7,3 +7,6 @@ def createsnowflake():
     snowflake = sprite.add("snow", x, y, "snow")
     snowflakeA = {"id": snowflake, "speed": random.randint(1, 10)}
     return snowflakeA
+
+@wrap.on_mouse_down(wrap.BUTTON_LEFT)
+def newsnow(pos_x,pos_y):
