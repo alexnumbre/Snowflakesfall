@@ -22,7 +22,6 @@ def water():
 @wrap.always(1000)
 def snowflake():
     snowlist.append(snowflakeclass.Snowflake(random.randint(20, 680), -5, mode))
-    print(mode)
 
 
 @wrap.always(10)
@@ -35,7 +34,9 @@ def down():
 def square():
     global mode
     for snowflake in snowlist:
-        if hasattr(snowflake,"square"):
+        if type(snowflake)==drop.Drop:
+            snowflake.square(spritetext="Я КАПЛЯ")
+        else:
             snowflake.square()
             mode = False
 
@@ -47,4 +48,6 @@ def normal():
         if hasattr(snowflake, "normal"):
             snowflake.normal()
             mode = True
+
+
 
