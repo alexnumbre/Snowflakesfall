@@ -5,42 +5,36 @@ from wrap import sprite,sprite_text
 
 
 class Snowflake():
-    def __init__(self,x,y):
-        snowfake=sprite.add("snow", x, y, "snow")
-        self.x=x
-        self.y=y
-        self.id=snowfake
-        self.speed=random.randint(2,15)/10
-        self.mode=True
+    def __init__(self,x,y,mode=True):
+        self.speed=random.randint(2,15)/5
+        self.mode=mode
+        self.id=sprite.add("snow", x, y, "snow",visible=mode)
+        self.text = sprite.add_text(str(self.speed), x, y, back_color=[254, 75, 255],visible=not mode)
 
 
     def movedown(self):
         sprite.move(self.id,0,self.speed)
-        if self.mode==False:
-            sprite.move(self.text,0,self.speed)
+        sprite.move(self.text,0,self.speed)
 
 
 
     def square(self):
-        if self.mode == False:
+        if not self.mode:
             return
 
-
-        xnow=sprite.get_x(self.id)
-        ynow=sprite.get_y(self.id)
-
         sprite.hide(self.id)
-        self.text=sprite.add_text(str(self.speed),xnow,ynow,back_color=[254,75,255])
+        sprite.show(self.text)
         self.mode=False
 
 
     def normal(self):
+        if self.mode:
+            return
 
         sprite.show(self.id)
         sprite.hide(self.text)
         self.mode=True
 
-#превращается только ожна снежинка, почему?
 
 
 
